@@ -51,7 +51,8 @@
   /* Layout */
   .auth-container {
     min-height: 100vh;
-    background: var(--background-gradient);
+    /* background: var(--background-gradient); */
+    background-color: #f8fafc;
     display: flex;
     align-items: center;
     justify-content: center;
