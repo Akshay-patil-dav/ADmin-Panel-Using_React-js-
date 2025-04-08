@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-    LayoutDashboard, 
-    BookOpen, 
-    PenTool, 
-    Users2, 
-    BarChart, 
+import {
+    LayoutDashboard,
+    BookOpen,
+    PenTool,
+    Users2,
+    BarChart,
     GraduationCap,
     Calendar,
     Mic,
@@ -20,18 +20,27 @@ const SideNav = ({ isOpen }) => {
     const [expandedItems, setExpandedItems] = useState([]);
 
     const toggleExpand = (itemId) => {
-        setExpandedItems((prev) => 
-            prev.includes(itemId) 
+        setExpandedItems((prev) =>
+            prev.includes(itemId)
                 ? prev.filter((id) => id !== itemId)
                 : [...prev, itemId]
         );
     };
 
     const navItems = [
-        { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-        { 
-            id: 'documents', 
-            icon: BookOpen, 
+        {
+            id: 'dashboard',
+            icon: LayoutDashboard,
+            label: 'Dashboard',
+            subItems: [
+                { id: 'notes', label: 'Notes', icon: FileText },
+                { id: 'lectures', label: 'Lectures', icon: Video },
+                { id: 'discussions', label: 'Discussions', icon: MessageSquare },
+            ]
+        },
+        {
+            id: 'documents',
+            icon: BookOpen,
             label: 'Documents',
             subItems: [
                 { id: 'notes', label: 'Notes', icon: FileText },
@@ -40,9 +49,9 @@ const SideNav = ({ isOpen }) => {
             ]
         },
         { id: 'ai-writer', icon: PenTool, label: 'AI Writer' },
-        { 
-            id: 'ai-teachers', 
-            icon: Users2, 
+        {
+            id: 'ai-teachers',
+            icon: Users2,
             label: 'AI Teachers',
             subItems: [
                 { id: 'math', label: 'Mathematics', icon: Users2 },
@@ -73,10 +82,9 @@ const SideNav = ({ isOpen }) => {
                                     <item.icon className="eduler-side-nav__item-icon" />
                                     <span className="eduler-side-nav__item-content">{item.label}</span>
                                     {item.subItems ? (
-                                        <ChevronDown 
-                                            className={`eduler-side-nav__item-arrow ${
-                                                expandedItems.includes(item.id) ? 'rotate-180' : ''
-                                            }`}
+                                        <ChevronDown
+                                            className={`eduler-side-nav__item-arrow ${expandedItems.includes(item.id) ? 'rotate-180' : ''
+                                                }`}
                                         />
                                     ) : (
                                         <ChevronRight className="eduler-side-nav__item-arrow" />
@@ -84,11 +92,10 @@ const SideNav = ({ isOpen }) => {
                                 </button>
                                 {item.subItems && (
                                     <div
-                                        className={`eduler-side-nav__subitems ${
-                                            expandedItems.includes(item.id) 
-                                                ? 'eduler-side-nav__subitems--expanded' 
+                                        className={`eduler-side-nav__subitems ${expandedItems.includes(item.id)
+                                                ? 'eduler-side-nav__subitems--expanded'
                                                 : ''
-                                        }`}
+                                            }`}
                                     >
                                         {item.subItems.map((subItem) => (
                                             <a
